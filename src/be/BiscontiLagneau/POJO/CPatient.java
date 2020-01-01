@@ -1,5 +1,7 @@
 package be.BiscontiLagneau.POJO;
 
-public class CPatient extends CPersonne {
+import java.io.Serializable;
+
+public class CPatient extends CPersonne implements Serializable{
 
 }

@@ -1,10 +1,11 @@
 package be.BiscontiLagneau.POJO;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import be.BiscontiLagneau.Enum.Prise;
 
-public class CCure {
+public class CCure implements Serializable{
 	// Attributs
 	private LocalDate dateDebut;
 	private int duree;

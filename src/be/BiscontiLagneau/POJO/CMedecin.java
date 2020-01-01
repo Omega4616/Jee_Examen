@@ -1,11 +1,12 @@
 package be.BiscontiLagneau.POJO;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
 import be.BiscontiLagneau.Enum.Specialisation;
 
-public class CMedecin extends CPersonne {
+public class CMedecin extends CPersonne implements Serializable {
 	// Attributs
 	private String mdp;
 	private List<CTraitement> l_Traitements;

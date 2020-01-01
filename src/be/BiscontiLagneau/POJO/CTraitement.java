@@ -1,9 +1,10 @@
 package be.BiscontiLagneau.POJO;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
-public class CTraitement {
+public class CTraitement implements Serializable{
 	// Attributs
 	private LocalDate dateIntroduction;
 	private String symptome;

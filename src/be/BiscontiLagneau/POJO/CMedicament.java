@@ -1,6 +1,8 @@
 package be.BiscontiLagneau.POJO;
 
-public class CMedicament {
+import java.io.Serializable;
+
+public class CMedicament implements Serializable {
 	// Attributs
 	private String nom;
 	private String type;

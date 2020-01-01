@@ -1,10 +1,11 @@
 package be.BiscontiLagneau.POJO;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import be.BiscontiLagneau.Enum.Genre;
 
-public abstract class CPersonne {
+public abstract class CPersonne implements Serializable{
 	// Attributs
 	protected String nom;
 	protected String prenom;
