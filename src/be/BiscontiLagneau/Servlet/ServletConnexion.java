@@ -10,23 +10,28 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class ServletConnexion
- */
+import be.BiscontiLagneau.DAO.DAO;
+import be.BiscontiLagneau.DAO.DAOConnexion;
+import be.BiscontiLagneau.DAO.DAOMedecin;
+import be.BiscontiLagneau.POJO.CMedecin;
+import betaboutique.javabean.Client;
+import betaboutique.servlet.client.HttpSession;
+
 @WebServlet("/ServletConnexion")
 public class ServletConnexion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	String inami, mdp;
+	CMedecin medecin;
 
     public ServletConnexion() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter out=response.getWriter();
 		inami=request.getParameter("inami");           
 		mdp=request.getParameter("mdp");
+		medecin = null;
         
         boolean ok = true;
             
@@ -37,11 +42,35 @@ public class ServletConnexion extends HttpServlet {
         	erreurs.add(getInitParameter("ErreurInami"));
         	ok = false;
         }
+        else
+        {
+        	DAOMedecin dao = new DAOMedecin(DAOConnexion.getInstance());
+        	medecin = dao.getMedecin(inami, mdp);
+        	
+        	if(medecin == null)
+        	{
+        		erreurs.add(getInitParameter("ErreurMedecin"));
+        		ok = false;
+        	}
+        }
         
         if(mdp.length() < 5)
         {
         	erreurs.add(getInitParameter("ErreurMdp"));
         }
+        
+        if(ok)
+        {                         
+        	request.setAttribute("medecin", medecin);
+            
+            getServletContext().getRequestDispatcher(UrlConnexionOk).forward(request, response);
+        }
+        else
+        {
+        	request.setAttribute("medecin", medecin);
+        	request.setAttribute("erreurs", erreurs);
+        	getServletContext().getRequestDispatcher(UrlConnexionErreur).forward(request, response);
+        }  
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

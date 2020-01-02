@@ -10,22 +10,13 @@ public class CMedecin extends CPersonne implements Serializable {
 	// Attributs
 	private String mdp;
 	private List<CTraitement> l_Traitements;
+	private int inami;
 	private String adresseCabinet;
 	private LocalDate dateDiplome;
 	private Specialisation specialisation;
 
 	// Constructeur
 	public CMedecin() {
-	}
-
-	public CMedecin(String mdp, List<CTraitement> l_Traitements, String adresseCabinet, LocalDate dateDiplome,
-			Specialisation specialisation) {
-		super();
-		this.mdp = mdp;
-		this.l_Traitements = l_Traitements;
-		this.adresseCabinet = adresseCabinet;
-		this.dateDiplome = dateDiplome;
-		this.specialisation = specialisation;
 	}
 
 	// Accesseurs
@@ -67,5 +58,15 @@ public class CMedecin extends CPersonne implements Serializable {
 
 	public void setSpecialisation(Specialisation specialisation) {
 		this.specialisation = specialisation;
+	}
+	
+	public void setInami(int inami)
+	{
+		this.inami = inami;
+	}
+	
+	public int getInami()
+	{
+		return inami;
 	}
 }

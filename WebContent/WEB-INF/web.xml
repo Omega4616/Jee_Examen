@@ -12,6 +12,18 @@
   		<param-name>ErreurMdp</param-name>
   		<param-value>Un mot de passe doit contenir 3 caractères minimum</param-value>
   	</init-param>
+  	<init-param>
+  		<param-name>ErreurMedecin</param-name>
+  		<param-value>Les identifiants ne correspondent à aucun compte</param-value>
+  	</init-param>
+  	<init-param>
+  		<param-name>UrlConnexionOk</param-name>
+  		<param-value>/Vues\\....jsp</param-value>
+  	</init-param>
+  	<init-param>
+  		<param-name>UrlConnexionErreur</param-name>
+  		<param-value>/Vues\\Connexion.jsp</param-value>
+  	</init-param>
   </servlet>
   <servlet-mapping>
   	<servlet-name>ServletConnexion</servlet-name>
