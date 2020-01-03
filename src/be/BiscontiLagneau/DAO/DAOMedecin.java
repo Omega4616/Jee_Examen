@@ -7,7 +7,12 @@ import java.sql.SQLException;
 import be.BiscontiLagneau.Enum.Specialisation;
 import be.BiscontiLagneau.POJO.CMedecin;
 import be.BiscontiLagneau.POJO.CPatient;
-
+//
+//
+// Ce sont les appels aux RPC qui doivent se trouver ici
+// Les connections à la base de données se font dans le Rest_Examen
+// J'ai créé les packages, classes , etc .. nécessaires dans le Rest_Examen
+// Pas oublier , que dans le Rest_Examen, c'est des appels à des procédures stockées dans la BDD
 public abstract class DAOMedecin extends DAO<CMedecin>{
 	public DAOMedecin(Connection connec)
 	{
