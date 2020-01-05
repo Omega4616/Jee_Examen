@@ -3,24 +3,41 @@ package be.BiscontiLagneau.DAO;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
-import be.BiscontiLagneau.Enum.Specialisation;
-import be.BiscontiLagneau.POJO.CMedecin;
-import be.BiscontiLagneau.POJO.CPatient;
+import javax.ws.rs.core.MediaType;
+
+import java.io.IOException;
+
+//import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.WebResource;
+import com.sun.jersey.api.client.config.ClientConfig;
+import com.sun.jersey.api.client.config.DefaultClientConfig;
+
+import be.BiscontiLagneau.Enum.*;
+import be.BiscontiLagneau.javaBean.*;
 //
 //
 // Ce sont les appels aux RPC qui doivent se trouver ici
 // Les connections à la base de données se font dans le Rest_Examen
 // J'ai créé les packages, classes , etc .. nécessaires dans le Rest_Examen
 // Pas oublier , que dans le Rest_Examen, c'est des appels à des procédures stockées dans la BDD
-public abstract class DAOMedecin extends DAO<CMedecin>{
-	public DAOMedecin(Connection connec)
+public class DAOMedecin extends DAO<CMedecin>{
+	public DAOMedecin()
 	{
-		super(connec);
+		super();
 	}
-	
+	/*
 	public CMedecin getMedecin(int inami, String mdp)
 	{
+		
 		CMedecin medecin = null;
         try
         {
@@ -93,5 +110,76 @@ public abstract class DAOMedecin extends DAO<CMedecin>{
             e.printStackTrace();
         }
         return medecin;
+	}*/
+
+	@Override
+	public boolean ajouter(CMedecin obj) {
+		// TODO Auto-generated method stub
+		return false;
 	}
+
+	@Override
+	public boolean supprimer(CMedecin obj) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean modifier(CMedecin obj) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	@Override
+	public CMedecin chercher(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public CMedecin authentification(long inami, String mdp) {
+		CMedecin medecin = new CMedecin();
+		ClientConfig config = new DefaultClientConfig();
+		Client c = Client.create(config);
+		WebResource webResource = c.resource(DAOConnexion.getbaseURI());
+		
+		if (webResource.equals(null)) {
+			System.out.println("Aucune réponse");
+		}
+		
+		String jsonResponse = webResource	.path("Medecin/authentification")
+											.queryParam("inami",String.format("%d", inami))
+											.queryParam("mdp", mdp)
+											.accept(MediaType.APPLICATION_JSON)
+											.get(String.class);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+		try {
+			medecin = mapper.readValue(jsonResponse, CMedecin.class);
+			return medecin;
+		} 
+		catch (JsonParseException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return null;
+		}
+		catch (JsonMappingException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return null;
+		}
+		catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public List<CMedecin> recupererTout() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 }

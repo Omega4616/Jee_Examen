@@ -4,10 +4,41 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import be.BiscontiLagneau.POJO.CPatient;
+import be.BiscontiLagneau.javaBean.CPatient;
 
-public abstract class DAOPatient extends DAO<CPatient>{
+public class DAOPatient extends DAO<CPatient>{
 
+	@Override
+	public boolean ajouter(CPatient obj) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean supprimer(CPatient obj) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean modifier(CPatient obj) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public CPatient chercher(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<CPatient> recupererTout() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/*
 	public CPatient getPatient(int nss)
 	{
 		CPatient patient = null;
@@ -36,5 +67,5 @@ public abstract class DAOPatient extends DAO<CPatient>{
             e.printStackTrace();
         }
         return patient;
-	}
+	}*/
 }

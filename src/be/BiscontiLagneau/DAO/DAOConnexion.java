@@ -1,38 +1,19 @@
 package be.BiscontiLagneau.DAO;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.net.URI;
+import javax.ws.rs.core.UriBuilder;
 
 public class DAOConnexion {
-	private static Connection instance = null;
 
-    private DAOConnexion()
-    {
-        try
-        {
-            Class.forName("oracle.jdbc.driver.OracleDriver");
-        }
-        catch(ClassNotFoundException e)
-        {
-            e.printStackTrace();
-        }
-
-        try
-        {
-            String username = "flavian";
-            String pwd = "barbeapapa";
-            String stringConnexion = "jdbc:oracle:thin:@//char-oracle11.condorcet.be:1521/xe";
-            instance = DriverManager.getConnection(stringConnexion,username,pwd);
-        }
-        catch(SQLException e)
-        {
-        	e.printStackTrace();
-        }
+    private DAOConnexion(){}
+    public static URI getbaseURI() {
+    	URI url;
+    	try {
+			url = UriBuilder.fromUri("http://localhost:9090/Rest_Examen/rest/").build();
+		} catch (IllegalArgumentException e) {
+			url = null;
+		}
+    	return url;
     }
-    public static Connection getInstance()
-    {
-        if(instance == null) new DAOConnexion();
-        return instance;
-    }
+    
 }

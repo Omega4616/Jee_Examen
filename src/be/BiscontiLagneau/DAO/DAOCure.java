@@ -1,6 +1,6 @@
 package be.BiscontiLagneau.DAO;
 
-import be.BiscontiLagneau.POJO.CCure;
+import be.BiscontiLagneau.javaBean.CCure;
 
 public abstract class DAOCure extends DAO<CCure>{
 

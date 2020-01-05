@@ -13,11 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 import be.BiscontiLagneau.DAO.DAO;
 import be.BiscontiLagneau.DAO.DAOConnexion;
 import be.BiscontiLagneau.DAO.DAOMedecin;
-import be.BiscontiLagneau.POJO.CMedecin;
-import betaboutique.javabean.Client;
-import betaboutique.servlet.client.HttpSession;
+import be.BiscontiLagneau.javaBean.CMedecin;
+//import betaboutique.javabean.Client;    Attention avec tes copier/coller, et push sur le git alors que l'IDE révèle des problème n'est vraiment pas une bonne idée ....
+//import betaboutique.servlet.client.HttpSession;
 
-@WebServlet("/ServletConnexion")
+//@WebServlet("/ServletConnexion")
 public class ServletConnexion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -44,8 +44,8 @@ public class ServletConnexion extends HttpServlet {
         }
         else
         {
-        	DAOMedecin dao = new DAOMedecin(DAOConnexion.getInstance());
-        	medecin = dao.getMedecin(inami, mdp);
+        	//DAOMedecin dao = new DAOMedecin(DAOConnexion.getInstance());
+        	//medecin = dao.getMedecin(inami, mdp);
         	
         	if(medecin == null)
         	{
@@ -63,13 +63,13 @@ public class ServletConnexion extends HttpServlet {
         {                         
         	request.setAttribute("medecin", medecin);
             
-            getServletContext().getRequestDispatcher(UrlConnexionOk).forward(request, response);
+            //getServletContext().getRequestDispatcher(UrlConnexionOk).forward(request, response);
         }
         else
         {
         	request.setAttribute("medecin", medecin);
         	request.setAttribute("erreurs", erreurs);
-        	getServletContext().getRequestDispatcher(UrlConnexionErreur).forward(request, response);
+        	//getServletContext().getRequestDispatcher(UrlConnexionErreur).forward(request, response);
         }  
 	}
 

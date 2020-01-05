@@ -1,6 +1,6 @@
 package be.BiscontiLagneau.DAO;
 
-import be.BiscontiLagneau.POJO.CTraitement;
+import be.BiscontiLagneau.javaBean.CTraitement;
 
 public abstract class DAOTraitement extends DAO<CTraitement>{
 

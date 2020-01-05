@@ -1,4 +1,4 @@
-package be.BiscontiLagneau.POJO;
+package be.BiscontiLagneau.javaBean;
 
 import java.io.Serializable;
 import java.time.LocalDate;

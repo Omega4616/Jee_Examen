@@ -1,25 +1,32 @@
-package be.BiscontiLagneau.POJO;
+package be.BiscontiLagneau.javaBean;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 
 import be.BiscontiLagneau.Enum.Genre;
 
 public abstract class CPersonne implements Serializable{
 	// Attributs
+	protected int ID_Personne;
 	protected String nom;
 	protected String prenom;
+	@JsonDeserialize(using = LocalDateDeserializer.class)
 	protected LocalDate dateNaissance;
 	protected String telephone;
 	protected Genre sexe;
 	protected String adresse;
 
 	// Constructeurs
+	
 	public CPersonne() {
 
 	}
 
-	public CPersonne(String nom, String prenom, LocalDate dateNaissance, String telephone, Genre sexe, String adresse) {
+	public CPersonne(int ID_Personne, String nom, String prenom, LocalDate dateNaissance, String telephone, Genre sexe, String adresse) {
+		this.ID_Personne = ID_Personne;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.dateNaissance = dateNaissance;
@@ -29,6 +36,13 @@ public abstract class CPersonne implements Serializable{
 	}
 
 	// Accesseurs
+	public int getID_Personne() {
+		return ID_Personne;
+	}
+
+	public void setID_Personne(int ID_Personne) {
+		this.ID_Personne = ID_Personne;
+	}
 	public String getNom() {
 		return nom;
 	}
