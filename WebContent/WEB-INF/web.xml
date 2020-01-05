@@ -64,7 +64,7 @@
 		</init-param>
 		<init-param>
 			<param-name>urlBienvenue</param-name>
-			<param-value>/Vues\\Bienvenue.jsp</param-value>
+			<param-value>/vues\\Bienvenue.jsp</param-value>
 		</init-param>
 	</servlet>
 	<servlet-mapping>

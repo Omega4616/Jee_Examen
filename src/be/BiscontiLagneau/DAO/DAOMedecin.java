@@ -1,21 +1,15 @@
 package be.BiscontiLagneau.DAO;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.ws.rs.core.MediaType;
 
 import java.io.IOException;
 
-//import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.config.ClientConfig;
@@ -30,10 +24,7 @@ import be.BiscontiLagneau.javaBean.*;
 // J'ai créé les packages, classes , etc .. nécessaires dans le Rest_Examen
 // Pas oublier , que dans le Rest_Examen, c'est des appels à des procédures stockées dans la BDD
 public class DAOMedecin extends DAO<CMedecin>{
-	public DAOMedecin()
-	{
-		super();
-	}
+	public DAOMedecin(){}
 	/*
 	public CMedecin getMedecin(int inami, String mdp)
 	{

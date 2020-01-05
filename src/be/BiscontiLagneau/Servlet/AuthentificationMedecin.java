@@ -73,7 +73,7 @@ public class AuthentificationMedecin extends HttpServlet {
 			if (mdp.equals("")) {
 				erreursParametres.add("Le paramètre [mot de passe] est vide");
 			}
-			if (!mdp.matches("^[0-9a-zA-Z]{5,}$")) {
+			if (!mdp.matches("^[0-9a-zA-Z]{3,}$")) {
 				erreursParametres.add("Le paramètre [mot de passe] doit avoir minimum 5 caractères");
 			}
 
@@ -92,8 +92,11 @@ public class AuthentificationMedecin extends HttpServlet {
 					out.println("<p>Vous êtes connecté</p>");
 					
 					HttpSession session = request.getSession();
-					session.setAttribute("medecin", medecin); 
-					response.sendRedirect(urlBienvenue);
+					session.setAttribute("inami", medecin.getInami()); 
+					session.setAttribute("Nom", medecin.getNom());
+					
+					//request.getRequestDispatcher(urlBienvenue).forward(request, response);
+					getServletContext().getRequestDispatcher("/Vues/Bienvenue.jsp").forward(request, response);
 				}
 			}
 

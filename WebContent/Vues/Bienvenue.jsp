@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.ArrayList"%>
+<%@ include file="Header/NavBar.html" %>
 
 
 <!DOCTYPE html>
@@ -11,11 +12,11 @@
 </head>
 <body>
 	<%
-		String identifiant = (String) request.getAttribute("inami");
+		String identifiant = (String) request.getSession(false).getAttribute("inami").toString();
 		if (identifiant == null) {
 			identifiant = "inconnu";
 		}
-		String motdepasse = (String) request.getAttribute("mdp");
+		String motdepasse = (String) request.getSession(false).getAttribute("Nom");
 		if (motdepasse == null) {
 			motdepasse = "inconnu";
 		}

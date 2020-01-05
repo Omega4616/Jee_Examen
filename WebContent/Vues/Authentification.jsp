@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ include file="Header/NavBar.html" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +21,7 @@
 				</tr>
 				<tr>
 					<td></td>
-					<td><input type="submit" value="Connexion" name="validation" /></td>
+					<td><input type="submit" value="Connexion" name="Connexion" /></td>
 				</tr>
 			</tbody>
 		</table>
