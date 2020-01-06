@@ -7,6 +7,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<meta http-equiv="Refresh" content="4;url=<%=application.getContextPath()%>/Vues/Authentification.jsp">
 <title>Erreurs !</title>
 </head>
 <body>
