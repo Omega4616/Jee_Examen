@@ -57,27 +57,25 @@ public class AuthentificationMedecin extends HttpServlet {
 		ArrayList<String> erreursParametres = new ArrayList<String>();
 		
 		if (request.getParameter("Connexion") != null) {
-			
-			if (inami == null) {
-				erreursParametres.add("Le paramètre [inami] est null");
-			}
+			Boolean estComplet = true;
 			if (inami.equals("")) {
 				erreursParametres.add("Le paramètre [inami] est vide");
+				estComplet = false;
 			}
 			if (!inami.matches("^[0-9a-zA-Z]{5,}$")) {
 				erreursParametres.add("Le paramètre [inami] doit avoir minimum 5 caractères");
-			}
-			if (mdp == null) {
-				erreursParametres.add("Le paramètre [mot de passe] est null");
+				estComplet = false;
 			}
 			if (mdp.equals("")) {
 				erreursParametres.add("Le paramètre [mot de passe] est vide");
+				estComplet = false;
 			}
 			if (!mdp.matches("^[0-9a-zA-Z]{3,}$")) {
 				erreursParametres.add("Le paramètre [mot de passe] doit avoir minimum 5 caractères");
+				estComplet = false;
 			}
 
-			if (inami != null && mdp != null) {
+			if (estComplet) {
 				CMedecin medecin = new CMedecin();
 				Long num_inami = Long.parseLong(inami);
 				medecin = medecin.authentification(num_inami, mdp);
@@ -102,7 +100,7 @@ public class AuthentificationMedecin extends HttpServlet {
 
 			if (erreursParametres.size() > 0) {
 				request.setAttribute("erreurs", erreursParametres);
-				getServletContext().getRequestDispatcher(urlErreurs).forward(request, response);
+				getServletContext().getRequestDispatcher("/Vues/erreursAuthentification.jsp").forward(request, response);
 			}
 		}
 	}
