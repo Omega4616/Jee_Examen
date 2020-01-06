@@ -4,6 +4,9 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	version="3.0">
 	<display-name>Medicus Online</display-name>
+	<welcome-file-list>
+		<welcome-file>Vues/Accueil.jsp</welcome-file>
+	</welcome-file-list>
 	<context-param>
 		<param-name>emailAdministrateur</param-name>
 		<param-value>admin@medicus-online.be</param-value>
@@ -36,8 +39,8 @@
 		<servlet-name>ServletConnexion</servlet-name>
 		<url-pattern>/ServletConnexion</url-pattern>
 	</servlet-mapping>
-	
-<!-- Définition des servlets -->
+
+	<!-- Définition des servlets -->
 
 	<servlet>
 		<servlet-name>AuthentificationMedecin</servlet-name>
