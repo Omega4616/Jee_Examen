@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class CTraitement implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	// Attributs
 	private LocalDate dateIntroduction;
 	private String symptome;

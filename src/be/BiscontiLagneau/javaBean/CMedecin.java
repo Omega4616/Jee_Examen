@@ -11,6 +11,8 @@ import be.BiscontiLagneau.DAO.*;
 import be.BiscontiLagneau.Enum.*;
 
 public class CMedecin extends CPersonne implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	// Attributs
 	private String mdp;
 	private List<CTraitement> l_Traitements;

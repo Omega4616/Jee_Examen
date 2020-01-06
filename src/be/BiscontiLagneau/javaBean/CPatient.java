@@ -3,6 +3,8 @@ package be.BiscontiLagneau.javaBean;
 import java.io.Serializable;
 
 public class CPatient extends CPersonne implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	//Attributs
 	int nss; //N° sécurité sociale
 	

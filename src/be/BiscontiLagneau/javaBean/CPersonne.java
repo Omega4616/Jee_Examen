@@ -9,6 +9,8 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import be.BiscontiLagneau.Enum.Genre;
 
 public abstract class CPersonne implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	// Attributs
 	protected int ID_Personne;
 	protected String nom;
