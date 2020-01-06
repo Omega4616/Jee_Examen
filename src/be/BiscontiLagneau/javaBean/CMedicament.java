@@ -1,6 +1,9 @@
-package be.BiscontiLagneau.javaBean;
+package be.BiscontiLagneau.JavaBean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+
+import be.BiscontiLagneau.JavaBean.CMedicament;
 
 public class CMedicament implements Serializable {
 	
@@ -23,7 +26,14 @@ public class CMedicament implements Serializable {
 		this.description = description;
 		this.dosage_jour_max = dosage_jour_max;
 	}
-
+	
+	//Méthodes
+	
+	public ArrayList<CMedicament> recupererTousMedicaments(){
+		
+		return null;
+	}
+	
 	// Accesseurs
 	public String getNom() {
 		return nom;

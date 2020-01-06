@@ -1,4 +1,4 @@
-package be.BiscontiLagneau.javaBean;
+package be.BiscontiLagneau.JavaBean;
 
 import java.io.Serializable;
 

@@ -1,6 +1,6 @@
 package be.Lagneau.test;
 
-import be.BiscontiLagneau.javaBean.CMedecin;
+import be.BiscontiLagneau.JavaBean.CMedecin;
 import be.BiscontiLagneau.Servlet.AuthentificationMedecin;
 
 public class Test {

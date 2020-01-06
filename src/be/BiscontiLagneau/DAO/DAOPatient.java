@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import be.BiscontiLagneau.javaBean.CPatient;
+import be.BiscontiLagneau.JavaBean.CPatient;
 
 public class DAOPatient extends DAO<CPatient>{
 
