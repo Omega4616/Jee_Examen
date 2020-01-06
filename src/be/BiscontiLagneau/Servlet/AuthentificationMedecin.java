@@ -79,7 +79,7 @@ public class AuthentificationMedecin extends HttpServlet {
 				CMedecin medecin = new CMedecin();
 				Long num_inami = Long.parseLong(inami);
 				medecin = medecin.authentification(num_inami, mdp);
-				if (medecin == null) {
+				if (medecin.getID_Personne() == 0) { // on compare à 0 , car le ObjectMapper donne la valeur par défaut aux attributs de la classe et donc elle n'est pas nulle.
 					erreursParametres.add("Identifiant incorrect");
 					PrintWriter out = response.getWriter();
 					response.setContentType("text/html");
