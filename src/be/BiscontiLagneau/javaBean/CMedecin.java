@@ -36,7 +36,18 @@ public class CMedecin extends CPersonne implements Serializable {
 		this.dateDiplome = dateDiplome;
 		this.specialisation = specialisation;
 	}
-
+	
+	public CMedecin(String nom, String prenom, LocalDate dateNaissance, String telephone, Genre sexe,
+			String adresse, String mdp, long inami, String adresseCabinet,
+			LocalDate dateDiplome, Specialisation specialisation) {
+		super(nom, prenom, dateNaissance, telephone, sexe, adresse);
+		this.mdp = mdp;
+		this.l_Traitements = null;
+		this.inami = inami;
+		this.adresseCabinet = adresseCabinet;
+		this.dateDiplome = dateDiplome;
+		this.specialisation = specialisation;
+	}
 
 	//Méthodes
 	public CMedecin authentification (long inami, String mdp) {
@@ -44,7 +55,10 @@ public class CMedecin extends CPersonne implements Serializable {
 		return daoM.authentification(inami, mdp);
 	}
 	
-	
+	public void inscrireMedecin()
+	{
+		
+	}
 
 	@Override
 	public String toString() {
