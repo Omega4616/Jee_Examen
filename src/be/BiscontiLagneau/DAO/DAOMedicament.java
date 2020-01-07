@@ -1,22 +1,16 @@
 package be.BiscontiLagneau.DAO;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.ws.rs.core.MediaType;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
-
-import be.BiscontiLagneau.JavaBean.CMedecin;
 import be.BiscontiLagneau.JavaBean.CMedicament;
 
 public class DAOMedicament extends DAO<CMedicament> {
@@ -60,24 +54,15 @@ public class DAOMedicament extends DAO<CMedicament> {
 											.accept(MediaType.APPLICATION_JSON)
 											.get(String.class);
 		
-		ObjectMapper mapper = new ObjectMapper();
-		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 		try {
-			ListeMedicaments = Arrays.asList(mapper.readValue(jsonResponse, CMedicament[].class));
+			Gson gson= new Gson();
+			ListeMedicaments = gson.fromJson(jsonResponse, new TypeToken<ArrayList<CMedicament>>() {}.getType());
+			//Ne fonctionne pas avec ObjectMapper(n'attribue pas de valeur aux ID_Medicament), j'ai donc remplacé par la solution de Google qui est lui fonctionnel et bien à jour
+			//ListeMedicaments = mapper.readValue(jsonResponse, new TypeReference<ArrayList<CMedicament>>(){});		
+			//ListeMedicaments = Arrays.asList(mapper.readValue(jsonResponse, CMedicament[].class));
 			return ListeMedicaments;
-		} 
-		catch (JsonParseException e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			return null;
 		}
-		catch (JsonMappingException e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			return null;
-		}
-		catch (IOException e) {
-			// TODO Auto-generated catch block
+		catch (NullPointerException e) {
 			e.printStackTrace();
 			return null;
 		}

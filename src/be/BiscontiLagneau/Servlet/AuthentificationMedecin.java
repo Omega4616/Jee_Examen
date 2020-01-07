@@ -100,7 +100,7 @@ public class AuthentificationMedecin extends HttpServlet {
 
 			if (erreursParametres.size() > 0) {
 				request.setAttribute("erreurs", erreursParametres);
-				getServletContext().getRequestDispatcher("/Vues/erreursAuthentification.jsp").forward(request, response);
+				getServletContext().getRequestDispatcher("/Vues/Authentification.jsp").forward(request, response);
 			}
 		}
 	}

@@ -19,8 +19,8 @@ public class CMedicament implements Serializable {
 	// Constructeurs
 	public CMedicament() {}
 
-	public CMedicament(String nom, String type, String description, String dosage_jour_max) {
-		super();
+	public CMedicament(int ID_Medicament, String nom, String type, String description, String dosage_jour_max) {
+		this.ID_Medicament = ID_Medicament;
 		this.nom = nom;
 		this.type = type;
 		this.description = description;
@@ -35,12 +35,12 @@ public class CMedicament implements Serializable {
 	}
 	
 	// Accesseurs
-	public int getID_Medicament() {
+	public int getID_Medicament() {  
 		return ID_Medicament;
 	}
 
-	public void setID_Medicament(int iD_Medicament) {
-		ID_Medicament = iD_Medicament;
+	public void setID_Medicament(int ID_Medicament) {
+		this.ID_Medicament = ID_Medicament;
 	}
 	public String getNom() {
 		return nom;
