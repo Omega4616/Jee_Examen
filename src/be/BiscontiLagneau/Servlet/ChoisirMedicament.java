@@ -1,43 +1,25 @@
 package be.BiscontiLagneau.Servlet;
 
 import java.io.IOException;
-
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import java.util.*;
-
-import be.BiscontiLagneau.JavaBean.*;
-
+import be.BiscontiLagneau.JavaBean.CMedicament;
 
 /**
- * Servlet implementation class ChercherMedicament
+ * Servlet implementation class ChoisirMedicament
  */
-@WebServlet("/ChercherMedicament")
-public class ChercherMedicament extends HttpServlet {
+@WebServlet("/ChoisirMedicament")
+public class ChoisirMedicament extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-
-	String emailAdmin = null;
-	List<String> List_IdMedicament = null;
-
-	public void init() {
-		ServletConfig config = getServletConfig();
-		// Récupérer email admin
-		ServletContext servletContext = getServletContext();
-		emailAdmin = servletContext.getInitParameter("emailAdministrateur");
-		
-
-	}
-	
-	
-    public ChercherMedicament() {
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ChoisirMedicament() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -47,13 +29,14 @@ public class ChercherMedicament extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		CMedicament cMedicament = new CMedicament();
-		List<CMedicament> medicaments = cMedicament.recupererTousMedicaments();
-		request.setAttribute("medicaments", medicaments);
-		
-		String IDMedicament = request.getParameter("IDMedicament");
-		request.setAttribute("mChoisi", IDMedicament);
-		
+		if(request.getAttribute("Choisir") != null) {
+			String IDMedicament = request.getParameter("ID_Medicament").toString();
+			//CMedicament mChoisi = (CMedicament) request.getSession().getAttribute(medicamentChoisi);
+			//request.getSession().removeAttribute(medicamentChoisi);
+			//Object o = medicamentChoisi;
+			//CMedicament m = (CMedicament)o;
+			request.setAttribute("mChoisi", IDMedicament);
+		}
 		getServletContext().getRequestDispatcher("/Vues/chercherMedicament.jsp").forward(request, response);
 	}
 
