@@ -13,9 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import be.BiscontiLagneau.DAO.DAO;
 import be.BiscontiLagneau.DAO.DAOConnexion;
 import be.BiscontiLagneau.DAO.DAOMedecin;
-import be.BiscontiLagneau.javaBean.CMedecin;
-//import betaboutique.javabean.Client;    Attention avec tes copier/coller, et push sur le git alors que l'IDE révèle des problème n'est vraiment pas une bonne idée ....
-//import betaboutique.servlet.client.HttpSession;
+import be.BiscontiLagneau.JavaBean.CMedecin;
 
 //@WebServlet("/ServletConnexion")
 public class ServletConnexion extends HttpServlet {

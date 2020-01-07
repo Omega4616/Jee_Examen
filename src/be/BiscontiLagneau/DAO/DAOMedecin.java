@@ -16,7 +16,7 @@ import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
 
 import be.BiscontiLagneau.Enum.*;
-import be.BiscontiLagneau.javaBean.*;
+import be.BiscontiLagneau.JavaBean.*;
 //
 //
 // Ce sont les appels aux RPC qui doivent se trouver ici

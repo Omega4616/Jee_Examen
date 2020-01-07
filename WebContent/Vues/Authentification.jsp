@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ include file="Header/NavBar.html"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,5 +30,27 @@
 			</tbody>
 		</table>
 	</form>
+
+	<%
+	ArrayList<String> erreurs = null;
+	if(request.getAttribute("erreurs") != null)
+		erreurs = (ArrayList<String>) request.getAttribute("erreurs");
+	%>
+	<%
+		if (erreurs != null) {
+	%>
+	<h2>Les erreurs suivantes se sont produites</h2>
+	<ul>
+		<%
+			for (int i = 0; i < erreurs.size(); i++) {
+		%>
+		<li><%=erreurs.get(i)%></li>
+		<%
+			}
+		%>
+	</ul>
+	<%
+		}
+	%>
 </body>
 </html>

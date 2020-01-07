@@ -1,30 +1,47 @@
-package be.BiscontiLagneau.javaBean;
+package be.BiscontiLagneau.JavaBean;
 
 import java.io.Serializable;
+import java.util.List;
+
+import be.BiscontiLagneau.DAO.DAOMedicament;
+import be.BiscontiLagneau.JavaBean.CMedicament;
 
 public class CMedicament implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	// Attributs
+	private int ID_Medicament;
 	private String nom;
 	private String type;
 	private String description;
 	private String dosage_jour_max;
 
 	// Constructeurs
-	public CMedicament() {
+	public CMedicament() {}
 
-	}
-
-	public CMedicament(String nom, String type, String description, String dosage_jour_max) {
-		super();
+	public CMedicament(int ID_Medicament, String nom, String type, String description, String dosage_jour_max) {
+		this.ID_Medicament = ID_Medicament;
 		this.nom = nom;
 		this.type = type;
 		this.description = description;
 		this.dosage_jour_max = dosage_jour_max;
 	}
-
+	
+	//Méthodes
+	
+	public List<CMedicament> recupererTousMedicaments(){
+		DAOMedicament daoMedicament = new DAOMedicament();
+		return daoMedicament.recupererTout();
+	}
+	
 	// Accesseurs
+	public int getID_Medicament() {  
+		return ID_Medicament;
+	}
+
+	public void setID_Medicament(int ID_Medicament) {
+		this.ID_Medicament = ID_Medicament;
+	}
 	public String getNom() {
 		return nom;
 	}
@@ -56,4 +73,6 @@ public class CMedicament implements Serializable {
 	public void setDosage_jour_max(String dosage_jour_max) {
 		this.dosage_jour_max = dosage_jour_max;
 	}
+
+	
 }

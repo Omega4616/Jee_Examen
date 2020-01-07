@@ -7,17 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class test
- */
-@WebServlet("/test")
-public class test extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+import be.BiscontiLagneau.JavaBean.CMedicament;
 
+/**
+ * Servlet implementation class ChoisirMedicament
+ */
+@WebServlet("/ChoisirMedicament")
+public class ChoisirMedicament extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
     /**
-     * Default constructor. 
+     * @see HttpServlet#HttpServlet()
      */
-    public test() {
+    public ChoisirMedicament() {
+        super();
         // TODO Auto-generated constructor stub
     }
 
@@ -26,7 +29,15 @@ public class test extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		if(request.getAttribute("Choisir") != null) {
+			String IDMedicament = request.getParameter("ID_Medicament").toString();
+			//CMedicament mChoisi = (CMedicament) request.getSession().getAttribute(medicamentChoisi);
+			//request.getSession().removeAttribute(medicamentChoisi);
+			//Object o = medicamentChoisi;
+			//CMedicament m = (CMedicament)o;
+			request.setAttribute("mChoisi", IDMedicament);
+		}
+		getServletContext().getRequestDispatcher("/Vues/chercherMedicament.jsp").forward(request, response);
 	}
 
 	/**

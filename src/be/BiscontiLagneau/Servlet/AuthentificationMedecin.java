@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import be.BiscontiLagneau.javaBean.CMedecin;
+import be.BiscontiLagneau.JavaBean.CMedecin;
 
 /**
  * Servlet implementation class AuthentificationMedecin
@@ -100,7 +100,7 @@ public class AuthentificationMedecin extends HttpServlet {
 
 			if (erreursParametres.size() > 0) {
 				request.setAttribute("erreurs", erreursParametres);
-				getServletContext().getRequestDispatcher("/Vues/erreursAuthentification.jsp").forward(request, response);
+				getServletContext().getRequestDispatcher("/Vues/Authentification.jsp").forward(request, response);
 			}
 		}
 	}
