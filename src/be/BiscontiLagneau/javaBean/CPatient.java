@@ -3,6 +3,9 @@ package be.BiscontiLagneau.JavaBean;
 import java.io.Serializable;
 import java.util.List;
 
+import be.BiscontiLagneau.DAO.DAOConnexion;
+import be.BiscontiLagneau.DAO.DAOPatient;
+
 public class CPatient extends CPersonne implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -12,6 +15,12 @@ public class CPatient extends CPersonne implements Serializable{
 	
 	//Constructeurs
 	public CPatient() {}
+	
+	//Méthodes
+	public boolean ajouter (CPatient patient) {
+		DAOPatient daoPatient = new DAOPatient();
+		return daoPatient.ajouter(patient);
+	}
 	
 	//Accesseurs
 	public int getID_Patient() {
