@@ -26,14 +26,6 @@ public abstract class CPersonne implements Serializable{
 
 	}
 
-	public CPersonne(String nom, String prenom, LocalDate dateNaissance, String telephone, Genre sexe, String adresse) {
-		this.nom = nom;
-		this.prenom = prenom;
-		this.dateNaissance = dateNaissance;
-		this.telephone = telephone;
-		this.sexe = sexe;
-		this.adresse = adresse;
-	}
 	
 	public CPersonne(String nom, String prenom, LocalDate dateNaissance, String telephone, Genre sexe, String adresse) {
 		this.nom = nom;
