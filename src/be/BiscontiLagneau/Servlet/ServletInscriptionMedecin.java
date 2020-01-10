@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import be.BiscontiLagneau.Enum.Genre;
 import be.BiscontiLagneau.Enum.Specialisation;
-import be.BiscontiLagneau.javaBean.CMedecin;
+import be.BiscontiLagneau.JavaBean.CMedecin;
 
 @WebServlet("/ServletInscriptionMedecin")
 public class ServletInscriptionMedecin extends HttpServlet {
