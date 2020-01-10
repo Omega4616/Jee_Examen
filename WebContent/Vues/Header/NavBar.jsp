@@ -42,7 +42,7 @@ body {
 <%if(request.getSession().getAttribute("medecin") == null){%>
 	  <a class="active" href="<%=application.getContextPath()%>/Vues/Accueil.jsp">Accueil</a>
 	  <a href="<%=application.getContextPath()%>/Vues/Authentification.jsp" >Connexion</a>
-	  <a href="#contact">Inscription</a>
+	  <a href="<%=application.getContextPath()%>/Vues/Inscription.jsp">Inscription</a>
 <%}
 else{%>
 	  <a class="active" href="<%=application.getContextPath()%>/Vues/Accueil.jsp">Accueil</a>
