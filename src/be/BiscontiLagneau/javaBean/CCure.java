@@ -1,4 +1,4 @@
-package be.BiscontiLagneau.javaBean;
+package be.BiscontiLagneau.JavaBean;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -6,6 +6,8 @@ import java.time.LocalDate;
 import be.BiscontiLagneau.Enum.Prise;
 
 public class CCure implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	// Attributs
 	private LocalDate dateDebut;
 	private int duree;

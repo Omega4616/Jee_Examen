@@ -6,18 +6,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class test
+ * Servlet implementation class Deconnexion
  */
-@WebServlet("/test")
-public class test extends HttpServlet {
+@WebServlet("/Deconnexion")
+public class Deconnexion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
     /**
-     * Default constructor. 
+     * @see HttpServlet#HttpServlet()
      */
-    public test() {
+    public Deconnexion() {
+        super();
         // TODO Auto-generated constructor stub
     }
 
@@ -25,8 +27,11 @@ public class test extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		HttpSession session = request.getSession();
+		session.removeAttribute("inami");
+		session.removeAttribute("Nom");
+		session.removeAttribute("medecin");
+		getServletContext().getRequestDispatcher("/Vues/AuRevoir.jsp").forward(request, response);
 	}
 
 	/**

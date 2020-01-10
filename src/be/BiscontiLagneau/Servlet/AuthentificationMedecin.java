@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import be.BiscontiLagneau.javaBean.CMedecin;
+import be.BiscontiLagneau.JavaBean.CMedecin;
 
 /**
  * Servlet implementation class AuthentificationMedecin
@@ -57,31 +57,29 @@ public class AuthentificationMedecin extends HttpServlet {
 		ArrayList<String> erreursParametres = new ArrayList<String>();
 		
 		if (request.getParameter("Connexion") != null) {
-			
-			if (inami == null) {
-				erreursParametres.add("Le paramètre [inami] est null");
-			}
+			Boolean estComplet = true;
 			if (inami.equals("")) {
 				erreursParametres.add("Le paramètre [inami] est vide");
+				estComplet = false;
 			}
-			if (!inami.matches("^[0-9a-zA-Z]{5,}$")) {
-				erreursParametres.add("Le paramètre [inami] doit avoir minimum 5 caractères");
-			}
-			if (mdp == null) {
-				erreursParametres.add("Le paramètre [mot de passe] est null");
+			if (!inami.matches("^[0-9]{11,11}$")) {
+				erreursParametres.add("Le paramètre [inami] doit avoir 11 chiffres");
+				estComplet = false;
 			}
 			if (mdp.equals("")) {
 				erreursParametres.add("Le paramètre [mot de passe] est vide");
+				estComplet = false;
 			}
-			if (!mdp.matches("^[0-9a-zA-Z]{5,}$")) {
-				erreursParametres.add("Le paramètre [mot de passe] doit avoir minimum 5 caractères");
+			if (!mdp.matches("^[0-9a-zA-Z]{4,}$")) {
+				erreursParametres.add("Le paramètre [mot de passe] doit avoir minimum 4 caractères");
+				estComplet = false;
 			}
 
-			if (inami != null && mdp != null) {
+			if (estComplet) {
 				CMedecin medecin = new CMedecin();
 				Long num_inami = Long.parseLong(inami);
 				medecin = medecin.authentification(num_inami, mdp);
-				if (medecin == null) {
+				if (medecin == null) { 
 					erreursParametres.add("Identifiant incorrect");
 					PrintWriter out = response.getWriter();
 					response.setContentType("text/html");
@@ -92,14 +90,18 @@ public class AuthentificationMedecin extends HttpServlet {
 					out.println("<p>Vous êtes connecté</p>");
 					
 					HttpSession session = request.getSession();
-					session.setAttribute("medecin", medecin); 
-					response.sendRedirect(urlBienvenue);
+					session.setAttribute("inami", medecin.getInami()); 
+					session.setAttribute("Nom", medecin.getNom());
+					session.setAttribute("medecin", medecin);
+					
+					//request.getRequestDispatcher(urlBienvenue).forward(request, response);
+					getServletContext().getRequestDispatcher("/Vues/Bienvenue.jsp").forward(request, response);
 				}
 			}
 
 			if (erreursParametres.size() > 0) {
 				request.setAttribute("erreurs", erreursParametres);
-				getServletContext().getRequestDispatcher(urlErreurs).forward(request, response);
+				getServletContext().getRequestDispatcher("/Vues/Authentification.jsp").forward(request, response);
 			}
 		}
 	}

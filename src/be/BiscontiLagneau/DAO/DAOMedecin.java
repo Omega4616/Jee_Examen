@@ -1,28 +1,28 @@
 package be.BiscontiLagneau.DAO;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.ws.rs.core.MediaType;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
+import java.time.LocalDate;
 
-//import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
 
 import be.BiscontiLagneau.Enum.*;
-import be.BiscontiLagneau.javaBean.*;
+import be.BiscontiLagneau.JavaBean.*;
 //
 //
 // Ce sont les appels aux RPC qui doivent se trouver ici
@@ -30,10 +30,7 @@ import be.BiscontiLagneau.javaBean.*;
 // J'ai créé les packages, classes , etc .. nécessaires dans le Rest_Examen
 // Pas oublier , que dans le Rest_Examen, c'est des appels à des procédures stockées dans la BDD
 public class DAOMedecin extends DAO<CMedecin>{
-	public DAOMedecin()
-	{
-		super();
-	}
+	public DAOMedecin(){}
 	/*
 	public CMedecin getMedecin(int inami, String mdp)
 	{
@@ -161,24 +158,35 @@ public class DAOMedecin extends DAO<CMedecin>{
 											.accept(MediaType.APPLICATION_JSON)
 											.get(String.class);
 		
-		ObjectMapper mapper = new ObjectMapper();
-		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 		try {
-			medecin = mapper.readValue(jsonResponse, CMedecin.class);
+			JSONObject json = new JSONObject(jsonResponse);
+			
+			medecin.setID_Medecin(json.getInt("ID_Personne"));
+			medecin.setNom(json.getString("nom"));
+			medecin.setPrenom(json.getString("prenom"));
+			medecin.setAdresse(json.getString("adresse"));
+			medecin.setDateNaissance(LocalDate.parse(json.getString("dateNaissance")));
+			medecin.setSexe(Genre.fromString(json.getString("sexe")));
+			medecin.setTelephone(json.getString("telephone"));
+			medecin.setAdresseCabinet(json.getString("adresseCabinet"));
+			medecin.setDateDiplome(LocalDate.parse(json.getString("dateDiplome")));
+			medecin.setInami(json.getLong("inami"));
+			medecin.setSpecialisation(Specialisation.fromString(json.getString("specialisation").toLowerCase()));
 			return medecin;
 		} 
-		catch (JsonParseException e) {
-			// TODO: handle exception
+		catch (JSONException e) {
 			e.printStackTrace();
 			return null;
 		}
-		catch (JsonMappingException e) {
-			// TODO: handle exception
+		catch (NullPointerException e) {
 			e.printStackTrace();
 			return null;
 		}
-		catch (IOException e) {
-			// TODO Auto-generated catch block
+		catch (JsonSyntaxException  e) {
+			e.printStackTrace();
+			return null;
+		}
+		catch(IllegalStateException e) {
 			e.printStackTrace();
 			return null;
 		}
