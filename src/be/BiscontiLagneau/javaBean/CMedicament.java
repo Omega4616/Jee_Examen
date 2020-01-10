@@ -33,6 +33,10 @@ public class CMedicament implements Serializable {
 		DAOMedicament daoMedicament = new DAOMedicament();
 		return daoMedicament.recupererTout();
 	}
+	public CMedicament chercher(int id) {
+		DAOMedicament daoMedicament = new DAOMedicament();
+		return daoMedicament.chercher(id);
+	}
 	
 	// Accesseurs
 	public int getID_Medicament() {  

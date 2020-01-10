@@ -56,7 +56,7 @@ public class ChercherMedicament extends HttpServlet {
 		// On vérifie si on à cliquer sur le bouton, et si oui, on récupère l'id du médicament et on l'ajoute à la liste
 		if (request.getParameter("Choisir") != null) {
 			HttpSession session = request.getSession();
-			List_IdMedicament.add(request.getParameter("Choisir"));
+			List_IdMedicament.add(request.getParameter("Choisir").toString());
 			session.setAttribute("List_IdMedicament", List_IdMedicament);
 		}
 		

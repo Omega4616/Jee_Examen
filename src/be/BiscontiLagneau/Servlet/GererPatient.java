@@ -36,30 +36,37 @@ public class GererPatient extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Récupérer la liste des patients et les placer dans le request pour l'affichage
 				CPatient cPatient = new CPatient();
-				List<CPatient> ListPatients = cPatient.recupererTousMedicaments();
-				CMedicament cMedicament = new CMedicament();
-				List<CMedicament> medicaments = cMedicament.recupererTousMedicaments();
-				request.setAttribute("medicaments", medicaments);
+				List<CPatient> ListPatients = cPatient.recupererTousPatients();
+				request.setAttribute("ListPatients", ListPatients);
 				
 				//Récupération des champs du formulaire de recherche si on a appuyer sur le bouton
 				if(request.getParameter("Rechercher") != null) {
 					//Les champs récupérés sont mis en lowercase et on rajoute un champ vide 
 					String nom 	= request.getParameter("nom").toString().toLowerCase().concat("");
-					String type = request.getParameter("type").toString().toLowerCase().concat("");
+					String prenom = request.getParameter("prenom").toString().toLowerCase().concat("");
+					String nrn = request.getParameter("nrn").toString().toLowerCase().concat("");
 					//transformations de la liste en Stream	
-					Stream<CMedicament> StreamMedi = medicaments.stream();
+					Stream<CPatient> StreamPatients = ListPatients.stream();
 					// le champ vide rajouté précédement permet d'utiliser quand même le startWith pour une recherche plus ergonomique
-					List<CMedicament> ListMediTrier = StreamMedi.filter(m -> m.getNom().toLowerCase().startsWith(nom) && m.getType().toLowerCase().startsWith(type)).collect(Collectors.toList());
-					request.setAttribute("medicaments", ListMediTrier);
+					List<CPatient> ListPatientTrier = StreamPatients.filter(m -> m.getNom().toLowerCase().startsWith(nom) && m.getPrenom().toLowerCase().startsWith(prenom) && String.valueOf(m.getNrn()).toLowerCase().startsWith(nrn) ).collect(Collectors.toList());
+					request.setAttribute("ListPatients", ListPatientTrier);
+				}
+				if (request.getParameter("infoSup") != null) {
+					String IDPatient = request.getParameter("infoSup");		
+					CPatient cPatient2 = new CPatient();
+					cPatient2 = cPatient2.chercher(Integer.parseInt(IDPatient));
+					request.setAttribute("Patient", cPatient2);
+					getServletContext().getRequestDispatcher("/Vues/FicheInfoPatient.jsp").forward(request, response);
 				}
 				
-				// On vérifie si on à cliquer sur le bouton, et si oui, on récupère l'id du médicament et on l'ajoute à la liste
-				if (request.getParameter("Choisir") != null) {
+				// On vérifie si on à cliquer sur le bouton, et si oui, on récupère l'id du patient pour l'envoyer sur la page du traitement médical
+				if (request.getParameter("Selectionner") != null) {
 					HttpSession session = request.getSession();
-					List_IdMedicament.add(request.getParameter("Choisir"));
-					session.setAttribute("List_IdMedicament", List_IdMedicament);
+					String IDPatient = request.getParameter("Selectionner");
+					session.setAttribute("PatientChoisi", IDPatient);
+					getServletContext().getRequestDispatcher("/Traitement").forward(request, response);
 				}
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+				getServletContext().getRequestDispatcher("/Vues/ListePatients.jsp").forward(request, response);
 	}
 
 	/**

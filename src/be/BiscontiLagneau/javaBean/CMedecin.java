@@ -14,6 +14,7 @@ public class CMedecin extends CPersonne implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	// Attributs
+	private int ID_Medecin;
 	private String mdp;
 	private List<CTraitement> l_Traitements;
 	private long inami;
@@ -27,10 +28,10 @@ public class CMedecin extends CPersonne implements Serializable {
 	}
 	
 	
-	public CMedecin(int ID_Personne, String nom, String prenom, LocalDate dateNaissance, String telephone, Genre sexe,
-			String adresse, String mdp, List<CTraitement> l_Traitements, long inami, String adresseCabinet,
+	public CMedecin(String nom, String prenom, LocalDate dateNaissance, String telephone, Genre sexe,
+			String adresse,int ID_Medecin, String mdp, List<CTraitement> l_Traitements, long inami, String adresseCabinet,
 			LocalDate dateDiplome, Specialisation specialisation) {
-		super(ID_Personne, nom, prenom, dateNaissance, telephone, sexe, adresse);
+		super( nom, prenom, dateNaissance, telephone, sexe, adresse);
 		this.mdp = mdp;
 		this.l_Traitements = l_Traitements;
 		this.inami = inami;
@@ -52,12 +53,20 @@ public class CMedecin extends CPersonne implements Serializable {
 	public String toString() {
 		return "CMedecin [mdp=" + mdp + ", l_Traitements=" + l_Traitements + ", inami=" + inami + ", adresseCabinet="
 				+ adresseCabinet + ", dateDiplome=" + dateDiplome + ", specialisation=" + specialisation
-				+ ", ID_Personne=" + ID_Personne + ", nom=" + nom + ", prenom=" + prenom + ", dateNaissance="
+				+ ", nom=" + nom + ", prenom=" + prenom + ", dateNaissance="
 				+ dateNaissance + ", telephone=" + telephone + ", sexe=" + sexe + ", adresse=" + adresse + "]";
 	}
 
 
 	// Accesseurs
+	public int getID_Medecin() {
+		return ID_Medecin;
+	}
+
+
+	public void setID_Medecin(int ID_Medecin) {
+		this.ID_Medecin = ID_Medecin;
+	}
 	public String getMdp() {
 		return mdp;
 	}
@@ -107,4 +116,7 @@ public class CMedecin extends CPersonne implements Serializable {
 	{
 		return inami;
 	}
+
+
+	
 }

@@ -35,8 +35,29 @@ public class DAOMedicament extends DAO<CMedicament> {
 
 	@Override
 	public CMedicament chercher(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		CMedicament Medicament = new CMedicament();
+		ClientConfig config = new DefaultClientConfig();
+		Client c = Client.create(config);
+		WebResource webResource = c.resource(DAOConnexion.getbaseURI());
+		
+		if (webResource.equals(null)) {
+			System.out.println("Aucune réponse");
+		}
+		
+		String jsonResponse = webResource	.path("Medicament/chercherMedicament")
+											.queryParam("IDMedicament", String.format("%d",id))
+											.accept(MediaType.APPLICATION_JSON)
+											.get(String.class);
+		
+		try {
+			Gson gson= new Gson();
+			Medicament = gson.fromJson(jsonResponse, CMedicament.class);
+			return Medicament;
+		}
+		catch (NullPointerException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override

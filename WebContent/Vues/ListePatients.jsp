@@ -2,10 +2,13 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.*"%>
 <%@ page import="be.BiscontiLagneau.JavaBean.CPatient"%>
-<%@ include file="Header/NavBar.html"%>
+<%@ include file="Header/NavBar.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
+<%if(request.getSession().getAttribute("medecin") == null){%>
+	<meta http-equiv="refresh" content="0; url=<%=application.getContextPath()%>/Vues/Authentification.jsp">
+<%}%>
 <style>
 input[type=text] {
 	width: 100%;
@@ -66,7 +69,7 @@ tr:nth-child(even) {
 
 	<%
 		List<CPatient> ListPatients = null;
-		//Récupération de la liste des médicaments
+		//Récupération de la liste des patients
 		if(request.getAttribute("ListPatients") != null){
 			ListPatients = (List<CPatient>)request.getAttribute("ListPatients");
 		}
@@ -77,20 +80,20 @@ tr:nth-child(even) {
 	<form action="${pageContext.request.contextPath}/GererPatient" method="post">
 	<table>
 		<tr>
+			<th>Prénom</th>
 			<th>Nom</th>
-			<th>Prenom</th>
 			<th>Numéro de registre national</th>
-			<th>     </th>
 		</tr>
 	
 	<%
 		if(!ListPatients.isEmpty()){
 			for (CPatient p : ListPatients) {%>
 			<tr>
-				<th><%= p.getNom() %></th>
 				<th><%= p.getPrenom() %></th>
+				<th><%= p.getNom() %></th>
 				<th><%= p.getNrn() %></th>
-				<th><button type="submit" value="<%=p.getID_Patient()%>" name="Selectionner">Sélectionner</button></th>
+				<th><button type="submit" value="<%=p.getID_Patient()%>" name="Selectionner">Sélectionner</button>
+					<button type="submit" value="<%=p.getID_Patient()%>" name="infoSup">Plus d'info</button></th>
 			</tr>
 		    <%}}%>
 	</table>
