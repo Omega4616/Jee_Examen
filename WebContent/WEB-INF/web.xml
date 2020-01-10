@@ -74,4 +74,73 @@
 		<servlet-name>AuthentificationMedecin</servlet-name>
 		<url-pattern>/authentificationMedecin</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ServletInscriptionMedecin</servlet-name>
+		<servlet-class>be.BiscontiLagneau.Servlet.ServletInscriptionMedecin</servlet-class>
+		<init-param>
+			<param-name>ErreurInami</param-name>
+			<param-value>Un code Inami doit contenir 11 caractères</param-value>
+		</init-param>
+		<init-param>
+			<param-name>ErreurMdp</param-name>
+			<param-value>Un mot de passe doit contenir entre 3 et 15 caractères</param-value>
+		</init-param>
+		<init-param>
+			<param-name>ErreurConf</param-name>
+			<param-value>Les mots de passe ne correspondent pas</param-value>
+		</init-param>
+		<init-param>
+			<param-name>ErreurAdresse</param-name>
+			<param-value>L'adresse doit contenir entre 10 et 30 caractères</param-value>
+		</init-param>
+		<init-param>
+			<param-name>ErreurAdresseCabinet</param-name>
+			<param-value>L'adresse de votre cabinet doit contenir entre 10 et 30 caractères</param-value>
+		</init-param>
+		<init-param>
+			<param-name>ErreurNaissance</param-name>
+			<param-value>Votre date de naissance doit être sous la forme jj/mm/aaaa</param-value>
+		</init-param>
+		<init-param>
+			<param-name>ErreurNaissance2</param-name>
+			<param-value>Votre date de naissance est incohérente (maximum 01/01/1990)</param-value>
+		</init-param>
+		<init-param>
+			<param-name>ErreurDiplome</param-name>
+			<param-value>Votre date d'obtention du diplome doit être sous la forme jj/mm/aaaa</param-value>
+		</init-param>
+		<init-param>
+			<param-name>ErreurDiplome2</param-name>
+			<param-value>Votre date d'obtention du diplome est incohérente (maximum 01/01/2020 et au moins 20 ans après naissance)</param-value>
+		</init-param>
+		<init-param>
+			<param-name>ErreurTelephone</param-name>
+			<param-value>Un n° de téléphone doit contenir 10 chiffres</param-value>
+		</init-param>
+		<init-param>
+			<param-name>ErreurNom</param-name>
+			<param-value>Un nom doit contenir entre 3 et 15 caractères</param-value>
+		</init-param>
+		<init-param>
+			<param-name>ErreurPrenom</param-name>
+			<param-value>Un prénom doit contenir entre 3 et 15 caractères</param-value>
+		</init-param>
+		<init-param>
+			<param-name>ErreurSpe</param-name>
+			<param-value>Veuillez choisir une spécialisation</param-value>
+		</init-param>
+		<init-param>
+			<param-name>ErreurGenre</param-name>
+			<param-value>Veuillez choisir un genre</param-value>
+		</init-param>
+		<init-param>
+  			<param-name>urlErreurs</param-name>
+  			<param-value>/Vues\\ErreursInscription.jsp</param-value>
+  		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ServletInscriptionMedecin</servlet-name>
+		<url-pattern>/InscriptionMedecin</url-pattern>
+	</servlet-mapping>
 </web-app>

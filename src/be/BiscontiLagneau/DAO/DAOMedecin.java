@@ -110,9 +110,17 @@ public class DAOMedecin extends DAO<CMedecin>{
 	}*/
 
 	@Override
-	public boolean ajouter(CMedecin obj) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean ajouter(CMedecin medecin) {
+		ClientConfig config = new DefaultClientConfig();
+		Client c = Client.create(config);
+		WebResource webResource = c.resource(DAOConnexion.getbaseURI());
+		
+		if(webResource != null)
+		{
+			
+			return true;
+		}
+		else return false;
 	}
 
 	@Override
@@ -133,6 +141,7 @@ public class DAOMedecin extends DAO<CMedecin>{
 		return null;
 	}
 
+	
 	public CMedecin authentification(long inami, String mdp) {
 		CMedecin medecin = new CMedecin();
 		ClientConfig config = new DefaultClientConfig();
