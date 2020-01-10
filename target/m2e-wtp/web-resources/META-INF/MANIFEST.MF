@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Built-By: flavian.bisconti
-Build-Jdk: 1.8.0_102
+Built-By: lagne
+Build-Jdk: 1.8.0_231
 Created-By: Maven Integration for Eclipse
 
