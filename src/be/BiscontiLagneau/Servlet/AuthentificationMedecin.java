@@ -62,16 +62,16 @@ public class AuthentificationMedecin extends HttpServlet {
 				erreursParametres.add("Le paramètre [inami] est vide");
 				estComplet = false;
 			}
-			if (!inami.matches("^[0-9a-zA-Z]{5,}$")) {
-				erreursParametres.add("Le paramètre [inami] doit avoir minimum 5 caractères");
+			if (!inami.matches("^[0-9]{11,11}$")) {
+				erreursParametres.add("Le paramètre [inami] doit avoir 11 chiffres");
 				estComplet = false;
 			}
 			if (mdp.equals("")) {
 				erreursParametres.add("Le paramètre [mot de passe] est vide");
 				estComplet = false;
 			}
-			if (!mdp.matches("^[0-9a-zA-Z]{3,}$")) {
-				erreursParametres.add("Le paramètre [mot de passe] doit avoir minimum 5 caractères");
+			if (!mdp.matches("^[0-9a-zA-Z]{4,}$")) {
+				erreursParametres.add("Le paramètre [mot de passe] doit avoir minimum 4 caractères");
 				estComplet = false;
 			}
 
@@ -79,7 +79,7 @@ public class AuthentificationMedecin extends HttpServlet {
 				CMedecin medecin = new CMedecin();
 				Long num_inami = Long.parseLong(inami);
 				medecin = medecin.authentification(num_inami, mdp);
-				if (medecin.getID_Personne() == 0) { // on compare à 0 , car le ObjectMapper donne la valeur par défaut aux attributs de la classe et donc elle n'est pas nulle.
+				if (medecin == null) { 
 					erreursParametres.add("Identifiant incorrect");
 					PrintWriter out = response.getWriter();
 					response.setContentType("text/html");
@@ -92,6 +92,7 @@ public class AuthentificationMedecin extends HttpServlet {
 					HttpSession session = request.getSession();
 					session.setAttribute("inami", medecin.getInami()); 
 					session.setAttribute("Nom", medecin.getNom());
+					session.setAttribute("medecin", medecin);
 					
 					//request.getRequestDispatcher(urlBienvenue).forward(request, response);
 					getServletContext().getRequestDispatcher("/Vues/Bienvenue.jsp").forward(request, response);

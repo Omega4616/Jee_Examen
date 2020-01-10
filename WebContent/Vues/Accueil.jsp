@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ include file="Header/NavBar.html"%>
+<%@ include file="Header/NavBar.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,5 +9,6 @@
 </head>
 <body>
 	<h1>Medicus Online</h1>
+	<p>Vous pouvez vous connecter via l'onglet de connexion</p>
 </body>
 </html>
